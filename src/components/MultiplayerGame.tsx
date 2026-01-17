@@ -95,6 +95,7 @@ export default function MultiplayerGame({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showBriefing, setShowBriefing] = useState(true); // Show mission briefing when game starts
   const [showBlackOpsAlert, setShowBlackOpsAlert] = useState(false);
+  const [alertBanner, setAlertBanner] = useState<string | null>(null);
 
   // Auto-dismiss Black Ops alert after 5 seconds
   useEffect(() => {
@@ -106,6 +107,16 @@ export default function MultiplayerGame({
       return () => clearTimeout(timer);
     }
   }, [gameState?.lastBlackOpsPlayed?.timestamp]);
+
+  // Auto-dismiss alert banner after 5 seconds
+  useEffect(() => {
+    if (alertBanner) {
+      const timer = setTimeout(() => {
+        setAlertBanner(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertBanner]);
 
   const isHostRef = useRef(false);
   const playersListRef = useRef<PlayerInfo[]>([]);
@@ -410,7 +421,11 @@ export default function MultiplayerGame({
     // Check if this player exists in game state
     if (!gameStateRef.current.players[gamePlayerId]) return;
 
+    const playerName = gameStateRef.current.players[gamePlayerId]?.name || 'Unknown';
     console.log(`[handlePlayerLeft] Removing player: room=${leftPlayerId}, game=${gamePlayerId}`);
+
+    // Show alert banner
+    setAlertBanner(`⚠ ${playerName.toUpperCase()} LEFT THE GAME - ASSETS REMOVED`);
 
     // Remove player from game state (remove voters, update turn order, etc)
     let newState = removePlayer(gameStateRef.current, gamePlayerId);
@@ -427,12 +442,12 @@ export default function MultiplayerGame({
 
   const handlePlayerDisconnecting = useCallback((leftPlayerId: string, playerName: string, gracePeriodMs: number) => {
     console.log(`[MultiplayerGame] Player ${playerName} disconnected - they have ${gracePeriodMs / 1000}s to reconnect`);
-    // Could show toast/notification here if desired
+    setAlertBanner(`⚠ ${playerName.toUpperCase()} DISCONNECTED - AWAITING RECONNECTION`);
   }, []);
 
   const handlePlayerReconnected = useCallback((reconnectedPlayerId: string, playerName: string) => {
     console.log(`[MultiplayerGame] Player ${playerName} reconnected!`);
-    // Could show toast/notification here if desired
+    setAlertBanner(`✓ ${playerName.toUpperCase()} RECONNECTED`);
   }, []);
 
   const handleRoomReset = useCallback((reason: string) => {
@@ -1000,6 +1015,23 @@ export default function MultiplayerGame({
               <span className="font-bold">{p.playerName}</span> reconnecting...
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Alert Banner - Red banner for important notifications */}
+      {alertBanner && (
+        <div
+          className="fixed top-[60px] left-1/2 -translate-x-1/2 z-[9999] px-8 py-3 font-mono uppercase tracking-wider text-sm text-white/95"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(180,40,40,0.95) 10%, rgba(180,40,40,0.95) 90%, transparent 100%)',
+            borderTop: '2px solid rgba(255,100,100,0.6)',
+            borderBottom: '2px solid rgba(255,100,100,0.6)',
+            textShadow: '0 0 10px rgba(255,100,100,0.8)',
+            minWidth: '400px',
+            textAlign: 'center',
+          }}
+        >
+          {alertBanner}
         </div>
       )}
 

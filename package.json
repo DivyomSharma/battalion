@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev:party": "partykit dev",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:party\"",
-    "build": "npx convex deploy --cmd 'next build'",
+    "build": "npx convex deploy --cmd 'npx convex codegen && next build'",
     "start": "next start",
     "lint": "eslint",
     "deploy:party": "partykit deploy"

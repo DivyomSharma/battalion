@@ -73,6 +73,24 @@ export function useMultiplayer({
   const sendActionMutation = useMutation(api.rooms.gameAction);
   const syncStateMutation = useMutation(api.rooms.syncState);
   const leaveGameMutation = useMutation(api.rooms.leaveRoom);
+  const heartbeatMutation = useMutation(api.rooms.heartbeat);
+
+  // Heartbeat interval to track connection
+  useEffect(() => {
+    if (!playerId) return;
+
+    const convexPlayerId = playerId as Id<"players">;
+
+    // Send initial heartbeat
+    heartbeatMutation({ playerId: convexPlayerId }).catch(() => { });
+
+    // Send heartbeat every 10 seconds
+    const interval = setInterval(() => {
+      heartbeatMutation({ playerId: convexPlayerId }).catch(() => { });
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [playerId, heartbeatMutation]);
 
   // Local state to track changes and fire callbacks
   const prevRoomStateRef = useRef<any>(null);

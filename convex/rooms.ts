@@ -54,7 +54,7 @@ export const joinRoom = mutation({
         }
 
         if (room.gameStarted) {
-            // Optional: allow rejoin
+            throw new Error("Game already in progress");
         }
 
         const playerId = await ctx.db.insert("players", {
@@ -91,20 +91,32 @@ export const leaveRoom = mutation({
         const player = await ctx.db.get(args.playerId);
         if (!player) return;
 
+        const roomId = player.roomId;
         await ctx.db.delete(args.playerId);
 
         const remainingPlayers = await ctx.db
             .query("players")
-            .withIndex("by_room", (q) => q.eq("roomId", player.roomId))
+            .withIndex("by_room", (q) => q.eq("roomId", roomId))
             .first();
 
         if (remainingPlayers) {
+            // Transfer host if the leaving player was host
             if (player.isHost) {
                 await ctx.db.patch(remainingPlayers._id, { isHost: true });
-                await ctx.db.patch(player.roomId, { hostId: remainingPlayers._id });
+                await ctx.db.patch(roomId, { hostId: remainingPlayers._id });
             }
         } else {
-            await ctx.db.delete(player.roomId);
+            // No players left - clean up room and all associated actions
+            const actions = await ctx.db
+                .query("actions")
+                .withIndex("by_room", (q) => q.eq("roomId", roomId))
+                .collect();
+
+            for (const action of actions) {
+                await ctx.db.delete(action._id);
+            }
+
+            await ctx.db.delete(roomId);
         }
     },
 });
@@ -147,5 +159,16 @@ export const getActions = query({
             .withIndex("by_room", (q) => q.eq("roomId", args.roomId))
             .order("desc")
             .take(20); // Keep it light, we only need recent ones for sync
+    },
+});
+
+// Heartbeat to track player connection status
+export const heartbeat = mutation({
+    args: { playerId: v.id("players") },
+    handler: async (ctx, args) => {
+        const player = await ctx.db.get(args.playerId);
+        if (player) {
+            await ctx.db.patch(args.playerId, { lastSeen: Date.now() });
+        }
     },
 });

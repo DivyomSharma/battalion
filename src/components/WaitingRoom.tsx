@@ -33,7 +33,7 @@ export default function WaitingRoom({
   onLeave,
 }: WaitingRoomProps) {
   const [copied, setCopied] = useState(false);
-  const [smokePuffStyles, setSmokePuffStyles] = useState<Array<{width: number, height: number, opacity: number, duration: number, delay: number}>>([]);
+  const [smokePuffStyles, setSmokePuffStyles] = useState<Array<{ width: number, height: number, opacity: number, duration: number, delay: number }>>([]);
 
   // Generate smoke puff styles on mount to avoid hydration mismatch
   useEffect(() => {
@@ -197,7 +197,7 @@ export default function WaitingRoom({
               <p className="text-[#4caf50]/60 text-xs mb-2 uppercase tracking-wider">ACCESS CODE</p>
               <div className="flex items-center justify-center gap-3">
                 <span className="text-3xl font-mono font-bold text-[#4caf50] tracking-[0.5em]" style={{ textShadow: '0 0 15px rgba(76,175,80,0.8)' }}>
-                  {roomCode}
+                  {roomCode || "------"}
                 </span>
                 <button
                   onClick={copyRoomCode}

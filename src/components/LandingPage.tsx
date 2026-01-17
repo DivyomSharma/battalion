@@ -572,7 +572,7 @@ export default function LandingPage({ onJoinRoom, onPlayLocal }: LandingPageProp
         if (!roomCode.trim()) { alert('Please enter a room code'); return; }
         localStorage.setItem('shasn_player_name', playerName);
         try {
-            const { roomId, playerId: newPlayerId } = await joinRoom({ roomCode: roomCode.toUpperCase(), playerName });
+            const { roomId, playerId: newPlayerId } = await joinRoom({ roomCode: roomCode.trim().toUpperCase(), playerName });
             onJoinRoom(roomId, newPlayerId, playerName);
         } catch (e: any) {
             console.error(e);

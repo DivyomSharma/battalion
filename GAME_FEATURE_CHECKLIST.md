@@ -7,22 +7,22 @@ This checklist tracks the implementation status of the game from start to finish
     - [x] Next.js 16 + React 19 environment
     - [x] TypeScript configuration
     - [x] TailwindCSS setup
-- [ ] **Multiplayer Infrastructure (Convex)**
-    - [ ] `Convex` setup & configuration
-    - [ ] `ConvexProvider` client integration
-    - [ ] Convex Schema Definition (`convex/schema.ts`)
-    - [ ] Backend Functions (Mutations/Queries for room state)
-    - [ ] State Synchronization (Realtime updates)
+- [x] **Multiplayer Infrastructure (Convex)**
+    - [x] `Convex` setup & configuration
+    - [x] `ConvexProvider` client integration
+    - [x] Convex Schema Definition (`convex/schema.ts`)
+    - [x] Backend Functions (Mutations/Queries for room state)
+    - [x] State Synchronization (Realtime updates)
 
 ## 2. Onboarding & Lobby
-- [ ] **Landing Page** (`LandingPage.tsx`)
-    - [ ] User authentication/guest login
-    - [ ] "Create Room" / "Join Room" UI
-- [ ] **Lobby System** (`Lobby.tsx`, `WaitingRoom.tsx`)
-    - [ ] Room code generation & sharing
-    - [ ] Player list display
+- [x] **Landing Page** (`LandingPage.tsx`)
+    - [x] User authentication/guest login
+    - [x] "Create Room" / "Join Room" UI
+- [x] **Lobby System** (`Lobby.tsx`, `WaitingRoom.tsx`)
+    - [x] Room code generation & sharing
+    - [x] Player list display
     - [ ] Ready check system
-    - [ ] Host controls (Start game)
+    - [x] Host controls (Start game)
 
 ## 3. Game Setup Phase
 - [ ] **Scenario/Mission Briefing** (`MissionBriefing.tsx`)
@@ -90,4 +90,4 @@ This checklist tracks the implementation status of the game from start to finish
     - [ ] Optimization & Performance check
 - [ ] **Deployments**
     - [ ] Deploy client to Vercel
-    - [ ] Deploy server to PartyKit Cloud
+    - [x] Configure Convex Production Environment

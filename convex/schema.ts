@@ -10,6 +10,13 @@ export default defineSchema({
         gameState: v.optional(v.any()), // Full game state object
     }).index("by_code", ["code"]),
 
+    actions: defineTable({
+        roomId: v.id("rooms"),
+        playerId: v.string(),
+        action: v.any(),
+        timestamp: v.number(),
+    }).index("by_room", ["roomId"]),
+
     players: defineTable({
         roomId: v.id("rooms"),
         name: v.string(),

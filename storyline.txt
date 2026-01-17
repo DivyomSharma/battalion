@@ -1,0 +1,245 @@
+================================================================================
+THE BATTALION: OPERATIONAL MASTER GUIDE (COMPLETE EDITION)
+================================================================================
+"Peace is not a condition; it is a victory."
+
+This document is the absolute authority on how to play "The Battalion".
+It assumes ZERO prior knowledge. Read it from top to bottom to master the game.
+
+================================================================================
+SECTION 1: THE GOAL (HOW TO WIN)
+================================================================================
+
+Most strategy games are about "Occupying Territory".
+This game is different. This game is about **LOCKING** territory.
+
+THE OBJECTIVE:
+At the end of the game, players count their **LOCKED BATTALIONS**.
+- 1 Locked Battalion = 1 Point.
+- The player with the MOST points wins.
+
+WHAT IS A "LOCKED" BATTALION?
+When you deploy enough troops into a Sector to secure it (>50% capacity), your units turn into STATUES (Locked).
+- They gain a padlock icon.
+- They cannot be moved.
+- They are your permanent score.
+- **Example:** If you secure a sector that needs 6 units, you get 6 POINTS.
+
+GAME OVER TRIGGERS:
+The game ends immediately when:
+1. All 9 Sectors are Controlled (have a owner).
+2. OR The map is completely full (no empty slots left).
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SECTION 2: THE MAP & MATH
+================================================================================
+
+The map is a 3x3 grid (9 Sectors total).
+Each sector has a different SIZE. Size matters because bigger sectors give more points!
+
+THE 4 SECTOR TYPES:
+
+1. CORNERS (4 Sectors) - "The Race"
+   - Name: Frozen Reach, Storm Peak, Dead Drop, Ember Coast.
+   - Total Slots: 11
+   - **CONTROL REQUIREMENT: 6 Units**
+   - Value: 6 Points.
+   - Strategy: Easy to secure. Go here first!
+
+2. EDGES (2 Sectors) - "The Bridge"
+   - Name: Iron Gate, Shadow Pass.
+   - Total Slots: 17
+   - **CONTROL REQUIREMENT: 9 Units**
+   - Value: 9 Points.
+   - Strategy: Harder to fill, but good for moving troops between corners.
+
+3. CENTER (1 Sector) - "The Nexus"
+   - Name: The Nexus.
+   - Total Slots: 9
+   - **CONTROL REQUIREMENT: 5 Units**
+   - Value: 5 Points.
+   - Strategy: Connects to everything, but low score value.
+
+4. CITADELS (2 Sectors) - "The Jackpots"
+   - Name: Northern Citadel, Southern Bastion.
+   - Total Slots: 21
+   - **CONTROL REQUIREMENT: 11 Units**
+   - Value: 11 Points.
+   - Strategy: Massive score boost. Securing one of these is worth almost TWO corners.
+
+HOT ZONES (!):
+Some slots have a RED EXCLAIMATION MARK status.
+- **Rule 1:** Placing a unit here triggers a Random Event Card (Flashpoint).
+- **Rule 2:** Units here became PERMANENT. They can never move.
+- **Rule 3:** They check for "Control" just like normal units.
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SECTION 3: RESOURCES (MONEY)
+================================================================================
+
+You have 4 types of currency. You can hold a MAXIMUM of 12 Total Resources.
+Any excess resources are lost immediately!
+
+1. 🟢 SUPPLY    : Used for purchasing units (Economy).
+2. 🔴 FIREPOWER : Used for attacking enemies (Force).
+3. 🔵 INTEL     : Used for spying and speed (Information).
+4. 🟡 MORALE    : Used for defense and conversion (Loyalty).
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SECTION 4: TURN SEQUENCE (STEP-BY-STEP)
+================================================================================
+
+GAME START:
+Players are assigned by voting.
+- Player 1 starts with 4 Resources.
+- Player 2 starts with 5 Resources.
+- Player 3 starts with 6 Resources.
+- Player 4 starts with 7 Resources.
+- Player 5 starts with 8 Resources.
+- (Giving later players a slight resource handicap and early players position handicap).
+
+ON YOUR TURN, YOU DO THESE 4 STEPS IN ORDER:
+
+--------------------------------------------------------------------------------
+STEP 1: SITUATION REPORT (GETTING PAID)
+--------------------------------------------------------------------------------
+A card appears with a story dilemma and 2 choices (Can be of any of the 4 Commanders).
+- Pick one choice.
+- **Gain Resources:** You get the resources shown on the card (usually 2-4).
+- **Gain XP:** You level up the Commander associated with that color.
+
+*The "Spin" Mechanic:*
+Hate the options? You can pay 4 RESOURCES to discard the card and draw a new one.
+
+--------------------------------------------------------------------------------
+STEP 2: ACTION PHASE (SPENDING MONEY)
+--------------------------------------------------------------------------------
+This is the main phase. You can do as many actions as you can afford.
+
+ACTION A: REQUISITION (BUYING UNITS)
+Buy "Deployment Orders" from the shop.
+- **1 Battalion** : Costs ~2 Resources.
+- **2 Battalions**: Costs ~4 Resources.
+- **3 Battalions**: Costs ~6 Resources.
+*Tip: Buying large batches is slightly more efficient.*
+
+ACTION B: BLACK OPS (BUYING CARDS)
+- Pay Resources to buy a "Black Ops Card".
+
+ACTION C: PLAY CARDS
+- Play a Black Ops card from your hand.
+
+ACTION D: USE COMMANDER POWERS
+- If you have unlocked Level 3 or 5 powers of any Commander, click them to use them.
+
+--------------------------------------------------------------------------------
+STEP 3: DEPLOYMENT (PLACING UNITS)
+--------------------------------------------------------------------------------
+You MUST place all the units you just bought.
+- Click any EMPTY slot on the map.
+- If you click a HOT ZONE (!), a Flashpoint event happens immediately (read the popup!).
+
+*Core Rule: You cannot end your turn with units still in reserve.*
+
+--------------------------------------------------------------------------------
+STEP 4: REDEPLOYMENT (MOVING UNITS)
+--------------------------------------------------------------------------------
+You can move units around the map for free. BUT there are strict rules.
+
+**THE 4 RULES OF MOVEMENT:**
+1. **The "Majority" Rule:** You can only move units OUT of a sector if you CONTROL it (>50% occupancy).
+   - If you have 5 units in a Corner (Total 11), you CANNOT move. You need 6.
+   - If you are Tied (e.g., you have 4, Enemy has 4), NO ONE can move.
+
+2. **The "Unlocked" Rule:** You can only move EXTRA units.
+   - If a Corner needs 6 to control, and you have 8 units there...
+   - The first 6 are LOCKED (Statues). They stay to hold the point.
+   - The extra 2 are UNLOCKED. You can move these 2.
+
+3. **The "Adjacency" Rule:** You can only move to a neighbor sector.
+
+4. **The "Hostile" Rule:** You can move ANY Unlocked unit. Even enemy units!
+   - Use this to kick enemy squatters out of your territory!
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SECTION 5: THE COMMANDERS (YOUR POWERS)
+================================================================================
+
+Every time you answer a Situation Report (Step 1), you level up one of 4 tracks.
+
+TRACK 1: THE CONTRACTOR (Green/Supply)
+- **Level 2 (Passive):** Gain +1 EXTRA Supply every time you answer a generic card (Limit: once per turn).
+- **Level 3 (Active):** "Prospecting" - Pay 1 Resource, Get 2 Random Resources back.
+- **Level 5 (Ultimate):** "Supply Blockade" - Kick a unit off the map! It goes back to the opponent's reserve. Great for breaking their control.
+
+TRACK 2: THE HARDLINER (Red/Firepower)
+- **Level 2 (Passive):** Gain +1 EXTRA Firepower every time you answer a card.
+- **Level 3 (Active):** "Donations" - Steal 1 Resource from an opponent.
+- **Level 5 (Ultimate):** "Kinetic Strike" - DESTROY a unit. It is removed from the game permanently.
+
+TRACK 3: THE OPERATIVE (Blue/Intel)
+- **Level 2 (Passive):** Gain +1 EXTRA Intel every time you answer a card.
+- **Level 3 (Active):** "Going Viral" - When you buy a Battalion, get +1 extra unit for FREE.
+- **Level 5 (Ultimate):** "Election Fever" - Normal Redeployment only lets you move 1 unit per sector. This power lets you move 2!
+
+TRACK 4: THE DIPLOMAT (Yellow/Morale)
+- **Level 2 (Passive):** Gain +1 EXTRA Morale every time you answer a card.
+- **Level 3 (Active):** "Local Coalition" - Get a 1-Resource DISCOUNT on any purchase.
+- **Level 5 (Ultimate):** "Tough Love" - Pay large cost to CONVERT 2 enemy units into YOUR units.
+
+--------------------------------------------------------------------------------
+
+================================================================================
+SECTION 6: BLACK OPS REFERENCE (CHEAT SHEET)
+================================================================================
+
+Use these cards to break the rules.
+
+1. **TACTICAL VETO**: Block a Redeployment.
+2. **FORTIFIED POSITION**: Make a Sector immune to Redeployment for a round.
+3. **ASSET SEIZURE**: Steal 2 Resources of a type from a player.
+4. **SABOTAGE**: All enemies lose 1 Resource of your choice.
+5. **SURGICAL STRIKE**: Destroy an enemy unit (Not Hot Zone/Statues).
+6. **SUPPLY RAID**: Steal 1 Resource from all enemies.
+7. **FORCE REDEPLOY**: Force-move an enemy unit to a neighbor sector (Not Hot Zone/Statues).
+8. **TACTICAL SHUFFLE**: Swap places of any two units on the board (Not Hot Zone/Statues).
+9. **INTEL SWEEP**: Gain 4 Resources (of each type) instantly.
+10.**RAPID RESPONSE**: Take an EXTRA TURN.
+
+================================================================================
+SECTION 7: User Interface
+================================================================================
+
+The Battalion uses a retro-futuristic military terminal interface, blending cold-war command aesthetics with modern grid-logic clarity. The entire game’s visual theme is built around the following core pillars:
+
+Primary Color:
+Neon Tactical Green (#00FF6A)
+Used for all UI lines, sector borders, buttons, and system text.
+
+Secondary Colors:
+
+Warning Red (#FF3B30) → Alerts, hot zones, errors, destruction indicators and Black Ops.
+
+Fire Red → Hardliner-related and Firepower.
+
+Natural Green → Contractor-related and supply.
+
+Signal Blue (#5AB4FF) → Intel-related UI, network status, agent highlights.
+
+Support Yellow (#FFC734) → Morale indicators, diplomacy and soft actions.
+
+Ambient Black (#000000) → Background and negative space.
+
+This color hierarchy ensures that players can instantly identify threat, safety, interactable elements, and system responses.
+
+================================================================================
+END OF MASTER GUIDE
+================================================================================

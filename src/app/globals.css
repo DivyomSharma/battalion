@@ -1,0 +1,614 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #e0e0e0;
+  --primary-green: #4caf50;
+  --alert-red: #f44336;
+  --highlight-cyan: #03a9f4;
+  --panel-bg: rgba(10, 10, 10, 0.95);
+  --panel-border: rgba(76, 175, 80, 0.4);
+  --glow-green: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Share Tech Mono', monospace;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Share Tech Mono', monospace;
+
+  /* Global UI Locks */
+  user-select: none;
+  /* Disable text selection */
+  cursor: crosshair;
+  /* Custom plus-sign cursor */
+}
+
+/* Force cursor on all elements */
+button,
+a,
+input,
+[role="button"] {
+  cursor: crosshair !important;
+}
+
+/* ===== SCANLINE OVERLAY ===== */
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 1px,
+      transparent 1px,
+      transparent 2px);
+}
+
+/* CRT flicker effect */
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(76, 175, 80, 0.02);
+  animation: crt-flicker 0.1s infinite;
+}
+
+@keyframes crt-flicker {
+
+  0%,
+  100% {
+    opacity: 0.02;
+  }
+
+  50% {
+    opacity: 0.04;
+  }
+}
+
+/* ===== TACTICAL PANEL STYLING ===== */
+.tactical-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--glow-green), inset 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.tactical-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(76, 175, 80, 0.02) 2px,
+      rgba(76, 175, 80, 0.02) 4px);
+  pointer-events: none;
+}
+
+/* ===== TACTICAL BUTTON ===== */
+.tactical-btn {
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--primary-green);
+  color: var(--primary-green);
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tactical-btn:hover {
+  background: var(--primary-green);
+  color: #0a0a0a;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+.tactical-btn:active {
+  transform: scale(0.98);
+}
+
+/* Glitch hover effect */
+.tactical-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.3), transparent);
+  transition: left 0.3s ease;
+}
+
+.tactical-btn:hover::before {
+  left: 100%;
+}
+
+/* ===== DIGITAL COUNTER STYLING ===== */
+.digital-counter {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--primary-green);
+  color: var(--primary-green);
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== TACTICAL HEADER ===== */
+.tactical-header {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary-green);
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* ===== GLOWING TEXT ===== */
+.glow-green {
+  color: var(--primary-green);
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+}
+
+.glow-red {
+  color: var(--alert-red);
+  text-shadow: 0 0 10px rgba(244, 67, 54, 0.8);
+}
+
+.glow-cyan {
+  color: var(--highlight-cyan);
+  text-shadow: 0 0 10px rgba(3, 169, 244, 0.8);
+}
+
+/* ===== TACTICAL MODAL ===== */
+.tactical-modal {
+  background: #0a0a0a;
+  border: 2px solid var(--primary-green);
+  box-shadow: 0 0 30px rgba(76, 175, 80, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #66bb6a;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--primary-green);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--primary-green);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 0.1s infinite;
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ===== TEXT STYLES ===== */
+.mono-text {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.label-text {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* ===== WAR THEME UTILITIES ===== */
+
+/* Smoke/Battlefield Overlay */
+.war-smoke-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.war-smoke-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 25, 20, 0.8) 0%, rgba(30, 25, 20, 0.4) 30%, transparent 60%);
+}
+
+.war-smoke-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: radial-gradient(ellipse 100% 60% at 50% 100%, rgba(139, 69, 19, 0.2) 0%, transparent 60%);
+}
+
+/* Tactical Grid Background */
+.tactical-grid-bg {
+  background-image:
+    linear-gradient(rgba(76, 175, 80, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 175, 80, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* War Theme Background - for screens */
+.war-bg {
+  background: linear-gradient(180deg, #0a0a0a 0%, #0f0d0a 30%, #1a1510 50%, #0f0d0a 70%, #0a0a0a 100%);
+}
+
+/* Corner Brackets - Reusable */
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before,
+.corner-brackets::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--primary-green);
+  pointer-events: none;
+}
+
+.corner-brackets::before {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-brackets::after {
+  top: 8px;
+  right: 8px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.corner-brackets-bottom::before,
+.corner-brackets-bottom::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--primary-green);
+  pointer-events: none;
+}
+
+.corner-brackets-bottom::before {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-brackets-bottom::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Fire Glow Effect */
+.fire-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: fire-pulse 3s ease-in-out infinite;
+}
+
+@keyframes fire-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+/* Radar Sweep Animation */
+.radar-sweep {
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid rgba(76, 175, 80, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.radar-sweep::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary-green), transparent);
+  transform-origin: left center;
+  animation: radar-rotate 3s linear infinite;
+}
+
+.radar-sweep::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes radar-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status Indicator Dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-dot-online {
+  background: var(--primary-green);
+  box-shadow: 0 0 8px var(--primary-green);
+}
+
+.status-dot-warning {
+  background: #ff9800;
+  box-shadow: 0 0 8px #ff9800;
+}
+
+.status-dot-danger {
+  background: var(--alert-red);
+  box-shadow: 0 0 8px var(--alert-red);
+}
+
+@keyframes status-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Military Alert Border */
+.military-alert {
+  border: 2px solid var(--alert-red);
+  box-shadow: 0 0 20px rgba(244, 67, 54, 0.3);
+  animation: alert-flash 1s ease-in-out infinite;
+}
+
+@keyframes alert-flash {
+
+  0%,
+  100% {
+    border-color: var(--alert-red);
+  }
+
+  50% {
+    border-color: rgba(244, 67, 54, 0.5);
+  }
+}
+
+/* Tactical Status Bar */
+.tactical-status-bar {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+/* War Panel - Enhanced tactical panel */
+.war-panel {
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid rgba(76, 175, 80, 0.4);
+  box-shadow:
+    0 0 30px rgba(76, 175, 80, 0.15),
+    inset 0 0 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.war-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(76, 175, 80, 0.05) 0%, transparent 20%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(76, 175, 80, 0.02) 2px, rgba(76, 175, 80, 0.02) 4px);
+  pointer-events: none;
+}
+
+/* Loading Animation - Military Style */
+@keyframes military-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.military-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(76, 175, 80, 0.2);
+  border-top-color: var(--primary-green);
+  border-radius: 50%;
+  animation: military-loading 1s linear infinite;
+}
+
+/* Smoke Puff Animation */
+@keyframes smoke-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-100px) scale(2);
+    opacity: 0;
+  }
+}
+
+.smoke-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(80, 70, 60, 0.3) 0%, transparent 70%);
+  animation: smoke-rise 8s ease-out infinite;
+}
+
+/* Vignette Effect */
+.war-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 2;
+}
+
+/* Military Header Style */
+.military-header {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary-green);
+  text-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+}
+
+/* Transmission Effect */
+@keyframes transmission-blink {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.7;
+  }
+}
+
+.transmission-text {
+  animation: transmission-blink 2s ease-in-out infinite;
+}

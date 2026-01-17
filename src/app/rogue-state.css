@@ -1,0 +1,497 @@
+/* The Battalion - Tactical Military Theme */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* Color Palette */
+  --gunmetal-black: #0a0b10;
+  --terminal-text: #e0e0e0;
+  --supply-green: #4caf50;
+  --firepower-red: #f44336;
+  --intel-blue: #03a9f4;
+  --morale-yellow: #ffeb3b;
+  --border-glow: rgba(76, 175, 80, 0.3);
+
+  /* Fonts */
+  --font-header: 'Black Ops One', cursive;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+/* Global Styles */
+body {
+  background-color: var(--gunmetal-black);
+  color: var(--terminal-text);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* CRT Scanline Overlay */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 3px),
+    radial-gradient(ellipse at center,
+      transparent 0%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.3) 100%);
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0, center;
+  }
+
+  100% {
+    background-position: 0 100vh, center;
+  }
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-header);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px var(--supply-green);
+}
+
+/* Blinking Cursor Animation */
+.cursor-blink::after {
+  content: '_';
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(10, 20, 10, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--supply-green);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.2);
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(76, 175, 80, 0.02) 2px,
+      rgba(76, 175, 80, 0.02) 4px);
+  pointer-events: none;
+}
+
+/* Tactical Button */
+.tactical-btn {
+  background: transparent;
+  border: 1px solid var(--terminal-text);
+  color: var(--terminal-text);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: crosshair;
+  transition: all 100ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tactical-btn:hover {
+  background: var(--terminal-text);
+  color: var(--gunmetal-black);
+  border-color: var(--supply-green);
+  animation: glitch 300ms ease;
+}
+
+.tactical-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes glitch {
+
+  0%,
+  100% {
+    transform: skew(0deg);
+  }
+
+  25% {
+    transform: skew(-2deg);
+  }
+
+  75% {
+    transform: skew(2deg);
+  }
+}
+
+/* Target Reticle (for zones/sectors) */
+.target-reticle {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--supply-green);
+  aspect-ratio: 1;
+}
+
+.target-reticle::before,
+.target-reticle::after {
+  content: '';
+  position: absolute;
+  border: 2px solid var(--supply-green);
+}
+
+/* Top-left bracket */
+.target-reticle::before {
+  top: -2px;
+  left: -2px;
+  width: 30%;
+  height: 30%;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Bottom-right bracket */
+.target-reticle::after {
+  bottom: -2px;
+  right: -2px;
+  width: 30%;
+  height: 30%;
+  border-left: none;
+  border-top: none;
+}
+
+/* Radar Ping Animation */
+@keyframes radar-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.radar-ping:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--supply-green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: radar-ping 1s ease-out infinite;
+}
+
+/* Hot Zone Warning */
+.hot-zone {
+  border: 2px solid var(--firepower-red) !important;
+  animation: pulse-red 2s ease-in-out infinite;
+  position: relative;
+}
+
+.hot-zone::before {
+  content: '⚠️';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.2rem;
+  animation: pulse-icon 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+
+  0%,
+  100% {
+    border-color: var(--firepower-red);
+    box-shadow: 0 0 10px var(--firepower-red);
+  }
+
+  50% {
+    border-color: rgba(244, 67, 54, 0.5);
+    box-shadow: 0 0 20px var(--firepower-red);
+  }
+}
+
+@keyframes pulse-icon {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Segmented Progress Bar */
+.progress-segments {
+  display: flex;
+  gap: 2px;
+  height: 12px;
+}
+
+.progress-segment {
+  flex: 1;
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid var(--supply-green);
+}
+
+.progress-segment.filled {
+  background: var(--supply-green);
+  box-shadow: 0 0 5px var(--supply-green);
+}
+
+/* Hexagon Frame */
+.hex-frame {
+  width: 60px;
+  height: 70px;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--supply-green);
+  padding: 2px;
+}
+
+.hex-frame-inner {
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--gunmetal-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--supply-green);
+  box-shadow: 0 0 10px var(--supply-green);
+  animation: status-blink 2s ease-in-out infinite;
+}
+
+@keyframes status-blink {
+
+  0%,
+  90% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Terminal Counter */
+.terminal-counter {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--supply-green);
+  text-shadow: 0 0 10px var(--supply-green);
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+
+/* Data Cable Lines */
+.data-cable {
+  stroke: #333;
+  stroke-width: 1px;
+  fill: none;
+  opacity: 0.5;
+}
+
+/* Tooltip */
+.tactical-tooltip {
+  position: absolute;
+  background: rgba(10, 11, 16, 0.95);
+  border: 1px solid var(--supply-green);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  pointer-events: none;
+  z-index: 1000;
+  font-family: var(--font-mono);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.tactical-tooltip::before {
+  content: '▶ ';
+  color: var(--supply-green);
+}
+
+/* Night Vision Map Filter */
+.night-vision-map {
+  filter: grayscale(100%) brightness(30%) sepia(20%) hue-rotate(50deg);
+  opacity: 0.3;
+}
+
+/* Hex Grid Overlay */
+.hex-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 40px,
+      var(--supply-green) 40px,
+      var(--supply-green) 41px),
+    repeating-linear-gradient(60deg,
+      transparent,
+      transparent 40px,
+      var(--supply-green) 40px,
+      var(--supply-green) 41px),
+    repeating-linear-gradient(120deg,
+      transparent,
+      transparent 40px,
+      var(--supply-green) 40px,
+      var(--supply-green) 41px);
+}
+
+/* Resource Colors */
+.resource-supply {
+  color: var(--supply-green);
+  border-color: var(--supply-green);
+}
+
+.resource-firepower {
+  color: var(--firepower-red);
+  border-color: var(--firepower-red);
+}
+
+.resource-intel {
+  color: var(--intel-blue);
+  border-color: var(--intel-blue);
+}
+
+.resource-morale {
+  color: var(--morale-yellow);
+  border-color: var(--morale-yellow);
+}
+
+/* Glowing Text */
+.glow-text {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Command Terminal Bar */
+.command-terminal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(10, 11, 16, 0.95) 0%, rgba(10, 11, 16, 1) 100%);
+  border-top: 2px solid var(--supply-green);
+  box-shadow: 0 -5px 20px rgba(76, 175, 80, 0.2);
+  z-index: 100;
+}
+
+/* Faction Colors with Transparency */
+.faction-contractor {
+  background: rgba(76, 175, 80, 0.4);
+  border-color: var(--supply-green);
+}
+
+.faction-hardliner {
+  background: rgba(244, 67, 54, 0.4);
+  border-color: var(--firepower-red);
+}
+
+.faction-operative {
+  background: rgba(3, 169, 244, 0.4);
+  border-color: var(--intel-blue);
+}
+
+.faction-diplomat {
+  background: rgba(255, 235, 59, 0.4);
+  border-color: var(--morale-yellow);
+}
+
+/* Screen Flicker */
+@keyframes screen-flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.97;
+  }
+}
+
+body {
+  animation: screen-flicker 0.15s infinite;
+}
+
+/* Disable default focus outlines, use tactical style */
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--supply-green);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gunmetal-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--supply-green);
+  border: 1px solid var(--gunmetal-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #66bb6a;
+}
